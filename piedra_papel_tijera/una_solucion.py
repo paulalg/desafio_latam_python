@@ -7,9 +7,7 @@ opciones = ['piedra', 'papel', 'tijera']
 '''
 Versión con lógica (optimizado)
 '''
-def ejecutar_ppt():
-    usuario = args[1]
-    pc = opciones[rand(0, 2)]
+def ejecutar_ppt(usuario, pc):
     print("Usuario: ", usuario, "\nPC:\t ", pc)
     if usuario == pc:
         print("Empataste!")
@@ -24,9 +22,7 @@ def ejecutar_ppt():
 '''
 Versión con diccionario
 '''
-def ejecutar_ppt2():
-    usuario = args[1]
-    pc = opciones[rand(0, 2)]
+def ejecutar_ppt2(usuario, pc):
     print("Usuario: ", usuario, "\nPC:\t ", pc)
     resultados = { ('piedra', 'piedra'): 'Empataste!',
                    ('piedra', 'papel'):  'Perdiste...',
@@ -44,14 +40,16 @@ def validate_input():
     if len(args) is not 2 or args[1] not in opciones:
         print("Opción inválida!")
         print("Las opciones son: ", opciones)
+        exit()
+    else:
+        return (args[1], opciones[rand(0, 2)])
 
 
 if __name__ == "__main__":
-    validate_input()
+    usuario, pc = validate_input()
 
     # Versión con lógica:
-    # ejecutar_ppt()
+    # ejecutar_ppt(usuario, pc)
 
     # Versión con diccionario indexado por tupla():
-    ejecutar_ppt2()
-
+    ejecutar_ppt2(usuario, pc)
